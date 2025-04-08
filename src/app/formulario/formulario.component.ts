@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AlunoService } from '../service/aluno.service';
 
 @Component({
   selector: 'app-formulario',
@@ -10,12 +11,11 @@ import { FormsModule } from '@angular/forms';
 })
 export class FormularioComponent {
   nome = '';
-  listas: string[] = [];
+
+  constructor(private alunoService: AlunoService) {}
 
   salvar() {
-    if (this.nome.trim()) {
-      this.listas.push(this.nome.trim());
-      this.nome = '';
-    }
+    this.alunoService.adicionarAluno(this.nome);
+    this.nome = '';
   }
 }
